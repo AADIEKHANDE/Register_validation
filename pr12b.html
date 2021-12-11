@@ -1,0 +1,218 @@
+<!-- Form validation using regular expression -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validation</title>
+    <style>
+        body{
+            height: 100vh;
+            background: linear-gradient(45deg,rgb(14, 3, 31),rgb(8, 0, 26),rgb(0, 3, 19));
+        }
+        .container{
+            padding:10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .container input{
+            background: transparent;
+            border: none;
+            outline: 1px rgba(143, 140, 140, 0.322) solid;
+            padding: 5px;
+            width: 200px;
+            height: 20px;
+            margin: 10px;
+            color: white;
+        }
+        .container button{
+            width: 210px;
+            padding: 7px;
+            font-weight: bold;
+            cursor: pointer;
+            background: transparent;
+            border: 2px rgb(73, 72, 72) solid;
+            outline: none;
+            color: rgb(231, 231, 231);
+            margin-left: 10px;
+        }
+        .container button:active , button:hover{
+            border: 2px rgb(24, 177, 204) solid;
+            transition: 1s ease-in-out;
+        }
+        .container label{
+            position: relative;
+            padding: 4px;
+            margin: 10px;
+        }
+        .login{
+            color:white;
+            font-size: 30px;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center><p class="login">Register</p></center>
+  <form name="f1">
+    <input type="text" name="user" id="userid" placeholder="Full Name">
+    <label for="" id="l1"></label>
+    <br><br>
+    <input type="text" name="mobile" id="mobileid" placeholder="Mobile Number">
+    <label for="" id="l2"></label>
+    <br><br>
+    <input type="text" name="mail" id="mailid" placeholder="Email">
+    <label for="" id="l3"></label>
+    <br><br>
+    <input type="text" name="pass" id="passid" placeholder="Password">
+    <label for="" id="l4"></label>
+    <br><br>
+    <input type="text" name="cpass" id="cpassid" placeholder="Confirm Password">
+    <label for="" id="l5"></label>
+    <br><br>
+    <button onclick="fun()" type="button">Submit</button>
+  </form>
+</div>
+</body>
+</html>
+<script>
+    function fun()
+    {
+        var vuser = document.f1.userid.value;
+        var vmobile = document.f1.mobile.value;
+        var vmail = document.f1.mail.value;
+        var vpass = document.f1.pass.value;
+        var vcpass = document.f1.cpass.value;
+
+        // var e1 = document.getElementById('l1');
+        // var e2 = document.getElementById('l2');
+        // var e3 = document.getElementById('l3');
+        // var e4 = document.getElementById('l4');
+        // var e5 = document.getElementById('l5');
+
+        var reg = /^[a-zA-Z]+ [a-zA-Z]+ [a-zA-Z]+$/;
+        var res = reg.test(vuser);
+
+        if(vuser!="")
+        {
+            if(res)
+            {
+                l1.innerHTML="Valid Fullname";
+                //l1.style="border: 2px rgb(16, 173, 16) solid";
+                l1.style.color="rgb(16, 173, 16,0.822)";
+            }
+            else
+            {
+                l1.innerHTML="Invalid Fullname";
+                //l1.style="border: 2px red solid";
+                l1.style.color="rgb(216, 50, 50, 0.822)";
+            }
+        }
+        else
+            {
+                l1.innerHTML="This Field is required";
+                //l1.style="border: 2px red solid";
+                l1.style.color="rgba(216, 50, 50, 0.822)";
+            }
+
+        //this is for mobile number varification
+
+        var reg = /^[\d]+$/;
+        var res = reg.test(vmobile);
+
+        if(vmobile!="")
+        {
+            if(res)
+            {
+                if(vmobile.length==10)
+                {
+                    l2.innerHTML="Valid Mobile Number";
+                    //l2.style="border: 2px rgb(16, 173, 16) solid";
+                    l2.style.color="rgb(16, 173, 16,0.822)";
+                }
+                else
+                {
+                    l2.innerHTML="Enter 10 Digit Mobile number";
+                    //l2.style="border: 2px red solid";
+                    l2.style.color="rgba(216, 50, 50, 0.822)";
+                }
+            }
+            else
+            {
+                l2.innerHTML="Invalid Mobile Number";
+                //l2.style="border: 2px red solid";
+                l2.style.color="rgba(216, 50, 50, 0.822)";
+            }
+        }
+        else
+            {
+                l2.innerHTML="This Field is required";
+                //l2.style="border: 2px red solid";
+                l2.style.color="rgba(216, 50, 50, 0.822)";
+            }
+
+        //this is for Email validation
+
+        var reg = RegExp("\\w+@+\\w+.+\\w");
+        var res = reg.test(vmail);
+
+        if(vmail!="")
+        {
+            if(res)
+            {
+                l3.innerHTML="Valid Email";
+                //l3.style="border: 2px rgb(16, 173, 16) solid";
+                l3.style.color="rgb(16, 173, 16,0.822)";
+            }
+            else
+            {
+                l3.innerHTML="Invalid Email";
+                //l3.style="border: 2px red solid";
+                l3.style.color="rgba(216, 50, 50, 0.822)";
+            }
+        }
+        else
+            {
+                l3.innerHTML="This Field is required";
+                //l3.style="border: 2px red solid";
+                l3.style.color="rgba(216, 50, 50, 0.822)";
+            }
+    
+
+        if(vpass=="")
+        {
+            l4.innerHTML="This Field is required";
+            //l4.style="border: 2px red solid";
+            l4.style.color="rgba(216, 50, 50, 0.822)";
+        }
+        else
+        {
+            l4.innerHTML="";
+        }
+
+        if(vpass==vcpass)
+        {
+            l5.innerHTML="Password Matched";
+            //l5.style="border: 2px rgb(16, 173, 16) solid";
+            l5.style.color="rgb(16, 173, 16,0.822)";
+        }
+        else
+        {
+            l5.innerHTML="Password Not Matched";
+            //l5.style="border: 2px red solid";
+            l5.style.color="rgba(216, 50, 50, 0.822)";
+        }
+
+        if(vcpass=="")
+        {
+            l5.innerHTML="This Field is required";
+            //l5.style="border: 2px red solid";
+            l5.style.color="rgba(216, 50, 50, 0.822)";
+        }
+    }
+
+</script>
